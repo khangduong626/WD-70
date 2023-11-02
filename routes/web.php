@@ -28,4 +28,6 @@ Route::prefix('/product')->name('product.')->group(function(){
     Route::get('/',[ProdcutController::class,'index'])->name('index');
 
 });
-Route::get('/category', [CategoryController::class,'index'])->name('category');
+Route::prefix('/category')->name('category.')->group(function(){
+    Route::get('/',[CategoryController::class,'index'])->name('index');
+});
