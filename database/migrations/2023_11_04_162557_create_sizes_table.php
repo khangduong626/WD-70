@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colors_tableable', function (Blueprint $table) {
-            $table->bigIncrements('color_id');
-            $table->string('color');
+        Schema::create('sizes', function (Blueprint $table) {
+            $table->id('size_id');
+            $table->string('size');
             $table->timestamps();
 
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colors_tableable');
+        Schema::dropIfExists('sizes');
     }
 };
