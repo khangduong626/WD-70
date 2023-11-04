@@ -34,7 +34,7 @@
             </a>
           </li>
         <li class="nav-item">
-            <a class="nav-link text-white " href="">
+            <a class="nav-link text-white {{ $activePage == 'brands' ? ' active bg-gradient-primary' : '' }} " href="{{route('brand.index')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="material-icons opacity-10">receipt_long</i>
               </div>
@@ -42,7 +42,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/billing.html">
+            <a class="nav-link text-white {{ $activePage == 'colors' ? ' active bg-gradient-primary' : '' }} " href="{{route('color.index')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="material-icons opacity-10">receipt_long</i>
               </div>
@@ -50,7 +50,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white " href="../pages/billing.html">
+            <a class="nav-link text-white {{ $activePage == 'sizes' ? ' active bg-gradient-primary' : '' }} " href="{{route('size.index')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="material-icons opacity-10">receipt_long</i>
               </div>
