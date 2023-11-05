@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-md-6 h   ">
                             <div class="input-group input-group-lg input-group-static input-group-outline my-3 ">
-                                <label for="exampleFormControlSelect1" class="ms-0">Danh mục</label>
+                                <label for="exampleFormControlSelect1" class="ms-0">Thương hiệu</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name='brand_id'>
                                     <option value="0">---NONE--- </option>
                                     @foreach ($brands as $brand)

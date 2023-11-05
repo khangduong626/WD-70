@@ -41,7 +41,7 @@
                                 </div>
                                 <div class=" justify-content-center">
                                   <h4 class="mb-2 text-mb ">{{$product->product_name}}</h4>
-                                  <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
+                                  <p class="text-xs text-secondary mb-0">{{isset($product->categories)?$product->categories->category_name :""}}</p>
                                 </div>
                               </div>
                             </td>

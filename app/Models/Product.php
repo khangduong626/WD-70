@@ -20,5 +20,7 @@ class Product extends Model
         'price',
         'img_url',
     ];
-
+    public function categories(){
+        return $this->belongsTo(Category::class,'category_id','category_id');
+    }
 }

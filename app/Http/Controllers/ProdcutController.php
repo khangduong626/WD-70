@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
@@ -17,7 +18,12 @@ class ProdcutController extends Controller
     public function index()
     {
         //
-        $products = Product::all();
+       
+        $products= Product::select('product_id','product_name','price','img_url','category_id',"updated_at")
+        ->with('categories:category_id,category_name')
+        ->get();
+        
+        
         return view('layouts.pages.product.index',['products'=>$products]);
     }
 
