@@ -31,6 +31,11 @@ Route::get('/home',[Dashboards::class,"index"])->name('dashboards');
 
 Route::prefix('/product')->name('product.')->group(function(){
     Route::get('/',[ProdcutController::class,'index'])->name('index');
+    Route::get('/create',[ProdcutController::class,'create'])->name('create');
+    Route::post('/store',[ProdcutController::class,'store'])->name('store');
+    Route::get('/edit/{id}',[ProdcutController::class,'edit'])->name('edit');
+    Route::put('/update/{id}',[ProdcutController::class,'update'])->name('update');
+    Route::delete('/delete/{id}',[ProdcutController::class,'delete'])->name('delete');
 
 });
 Route::prefix('/category')->name('category.')->group(function(){

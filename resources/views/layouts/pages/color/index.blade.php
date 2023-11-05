@@ -44,7 +44,7 @@
                               </div>
                             </td>
                             <td class="align-middle text-center text-sm">
-                                <span class=""><input type="color" class="" disabled value="{{$color->color_hex}}" ></span>
+                                <span class=""><input type="color" class="" disabled value="{{$color->color_hex}} " ></span>
                               </td>
                             <td class="align-middle text-center text-sm">
                               <span class="badge badge-sm bg-gradient-success">Hiện</span>
@@ -54,7 +54,7 @@
                             </td>
                             <td class="align-middle  text-center mr-5">
                               <a href={{route('color.edit',$color->color_id)}} class="btn btn-outline-secondary " data-toggle="tooltip" >
-                                Sửa
+                                <i class="material-icons opacity-10">edit</i>
                               </a>
                               <form 
                               action="{{route('color.delete',$color->color_id)}} "
@@ -62,7 +62,7 @@
                               >
                               @method('DELETE')
                               @csrf
-                              <button type="submit" class="btn btn-danger">Xóa</button>
+                              <button type="submit" class="btn btn-danger"><i class="material-icons opacity-10">delete</i></button>
                               </form>
                             </td>
                           </tr>

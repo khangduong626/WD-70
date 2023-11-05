@@ -51,7 +51,7 @@
                             </td>
                             <td class="align-middle  text-center mr-5">
                               <a href={{route('size.edit',$size->size_id)}} class="btn btn-outline-secondary " data-toggle="tooltip" >
-                                Sửa
+                                <i class="material-icons opacity-10">edit</i>
                               </a>
                               <form 
                               action="{{route('size.delete',$size->size_id)}} "
@@ -59,7 +59,7 @@
                               >
                               @method('DELETE')
                               @csrf
-                              <button type="submit" class="btn btn-danger">Xóa</button>
+                              <button type="submit" class="btn btn-danger"><i class="material-icons opacity-10">delete</i></button>
                               </form>
                             </td>
                           </tr>

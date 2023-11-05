@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Brand;
+
+
 
 class ProdcutController extends Controller
 {
@@ -12,7 +17,8 @@ class ProdcutController extends Controller
     public function index()
     {
         //
-        return view('layouts.pages.product.index');
+        $products = Product::all();
+        return view('layouts.pages.product.index',['products'=>$products]);
     }
 
     /**
@@ -21,6 +27,9 @@ class ProdcutController extends Controller
     public function create()
     {
         //
+        $category = Category::all();
+        $brands = Brand::all();
+        return view('layouts.pages.product.create',['categories'=>$category,'brands'=>$brands]);
     }
 
     /**
@@ -29,6 +38,25 @@ class ProdcutController extends Controller
     public function store(Request $request)
     {
         //
+        $product = new Product();
+        $product->fill($request->all());
+        if($request->hasFile('img_url')){
+            $file = $request->img_url;
+            $fileHashName = $file->hashName();
+            $fileName = $request->name.'_'.$fileHashName;
+            $path = public_path().'/images/products';
+            $file -> move($path,$fileName);
+            $product->img_url = "/images/products/$fileName";
+        }
+        else {
+            $product->img_url = '';
+        }
+        
+
+        $product->save();
+        return redirect()->route('product.index');
+
+
     }
 
     /**
@@ -58,8 +86,11 @@ class ProdcutController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(Product $id)
     {
         //
+        if($id->delete()){
+            return redirect()->route('product.index');
+        }
     }
 }
