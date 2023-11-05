@@ -1,6 +1,6 @@
-@extends('layouts.app',['activePage' => 'category'])
-@section('title_pages','Danh mục')
-@section('pages_detail',isset($category)?"Sửa danh mục":"Thêm danh mục")
+@extends('layouts.app',['activePage' => 'brands'])
+@section('title_pages','Thương hiệu')
+@section('pages_detail',isset($brand)?"Sửa thương hiệu":"Thêm thương hiệu")
 
 
 @section('content')
@@ -12,22 +12,22 @@
                 
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                  <h6 class="text-white text-capitalize ps-3">{{isset($category)?'Sửa danh mục':'Thêm danh mục'}}</h6>
+                  <h6 class="text-white text-capitalize ps-3">{{isset($brand)?'Sửa Thương hiệu':'Thêm thương hiệu'}}</h6>
                 </div>
               </div>
               <div class="card-body px-5 pb-4">
-                <form action="{{isset($category)? route('category.update',$category->category_id): route('category.store')}}" method="POST">
+                <form action="{{isset($brand) ? route('brand.update',$brand->brand_id): route('brand.store')}}" method="POST">
                     @csrf
-                    @if (isset($category))
+                    @if (isset($brand))
                                 @method('PUT')
                     @endif
                     <div class="col-md-12 h ">
                     <div class="input-group input-group-lg input-group-static mb-4">
-                      <label class="">Tên danh mục</label>
-                      <input value="{{isset($category)? $category->category_name:''}}" type="text" name="category_name" class="form-control form-control-lg">
+                      <label class="">Tên thương hiệu</label>
+                      <input value="{{isset($brand)? $brand->brand_name:''}}" type="text" name="brand_name" class="form-control form-control-lg">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg w-100">{{isset($category)?'Sửa ':'Thêm '}}</button>
+                <button type="submit" class="btn btn-primary btn-lg w-100">{{isset($brand)?'Sửa ':'Thêm '}}</button>
                 </form>
                 
               </div>
