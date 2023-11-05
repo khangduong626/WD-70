@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Size;
 
 class SizeController extends Controller
 {
@@ -12,7 +13,8 @@ class SizeController extends Controller
     public function index()
     {
         //
-        return view ('layouts.pages.size.index');
+        $sizes = Size::all();
+        return view ('layouts.pages.size.index',['sizes'=>$sizes]);
     }
 
     /**
@@ -21,6 +23,7 @@ class SizeController extends Controller
     public function create()
     {
         //
+        return view ('layouts.pages.size.create');
     }
 
     /**
@@ -29,6 +32,11 @@ class SizeController extends Controller
     public function store(Request $request)
     {
         //
+        $sizeRequest = $request->all();
+        $sizes = new Size();
+        $sizes->size = $sizeRequest['size_name'];
+        $sizes->save();
+        return redirect()->route('size.index');
     }
 
     /**
@@ -42,24 +50,32 @@ class SizeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Size $id)
     {
         //
+        return view('layouts.pages.size.create',['size'=>$id]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Size $id)
     {
         //
+        $sizes = $id ;
+        $sizes->size =$request->size_name;
+        $sizes->save();
+        return redirect()->route('size.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(Size $id)
     {
         //
+        if($id->delete()){
+            return redirect()->route('size.index');
+        }
     }
 }

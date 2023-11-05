@@ -9,4 +9,10 @@ class Color extends Model
 {
     use HasFactory;
     protected $table = 'colors';
+    protected $primaryKey = 'color_id';
+    protected $fillable = [
+        'color_id',
+        'color',
+        'color_hex'
+    ];
 }

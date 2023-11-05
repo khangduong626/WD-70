@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Color;
 
 class ColorController extends Controller
 {
@@ -12,7 +13,8 @@ class ColorController extends Controller
     public function index()
     {
         //
-        return view('layouts.pages.color.index');
+        $colors = Color::all();
+        return view('layouts.pages.color.index',["colors"=>$colors]);
     }
 
     /**
@@ -21,6 +23,7 @@ class ColorController extends Controller
     public function create()
     {
         //
+        return view ('layouts.pages.color.create');
     }
 
     /**
@@ -29,6 +32,12 @@ class ColorController extends Controller
     public function store(Request $request)
     {
         //
+        $colorRequest = $request->all();
+        $colors = new Color();
+        $colors->color = $colorRequest['color_name'];
+        $colors->color_hex = $colorRequest['color_hex'];
+        $colors->save();
+        return redirect()->route('color.index');
     }
 
     /**
@@ -42,24 +51,33 @@ class ColorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Color $id)
     {
         //
+        return view('layouts.pages.color.create',['color'=>$id]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Color $id)
     {
         //
+        $colors = $id ;
+        $colors->color =$request->color_name;
+        $colors->color_hex = $request->color_hex;
+        $colors->save();
+        return redirect()->route('color.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(Color $id)
     {
         //
+        if($id->delete()){
+            return redirect()->route('color.index');
+        }
     }
 }

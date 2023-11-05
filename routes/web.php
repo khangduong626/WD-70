@@ -48,11 +48,28 @@ Route::prefix('/category')->name('category.')->group(function(){
 });
 Route::prefix('/color')->name('color.')->group(function(){
     Route::get('/',[ColorController::class,'index'])->name('index');
+    Route::get('/create',[ColorController::class,'create'])->name('create');
+    Route::post('/store',[ColorController::class,'store'])->name('store');
+    Route::get('/edit/{id}',[ColorController::class,'edit'])->name('edit');
+    Route::put('/update/{id}',[ColorController::class,'update'])->name('update');
+    Route::delete('/delete/{id}',[ColorController::class,'delete'])->name('delete');
 });
 Route::prefix('/brand')->name('brand.')->group(function(){
     Route::get('/',[BrandController::class,'index'])->name('index');
+    Route::get('/create',[BrandController::class,'create'])->name('create');
+    Route::post('/store',[BrandController::class,'store'])->name('store');
+    Route::get('/edit/{id}',[BrandController::class,'edit'])->name('edit');
+    Route::put('/update/{id}',[BrandController::class,'update'])->name('update');
+    Route::delete('/delete/{id}',[BrandController::class,'delete'])->name('delete');
+
 });
 Route::prefix('/size')->name('size.')->group(function(){
     Route::get('/',[SizeController::class,'index'])->name('index');
+    Route::get('/create',[SizeController::class,'create'])->name('create');
+    Route::post('/store',[SizeController::class,'store'])->name('store');
+    Route::get('/edit/{id}',[SizeController::class,'edit'])->name('edit');
+    Route::put('/update/{id}',[SizeController::class,'update'])->name('update');
+    Route::delete('/delete/{id}',[SizeController::class,'delete'])->name('delete');
+
 });
 

@@ -44,7 +44,7 @@
           <li class="nav-item">
             <a class="nav-link text-white {{ $activePage == 'colors' ? ' active bg-gradient-primary' : '' }} " href="{{route('color.index')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">receipt_long</i>
+                <i class="material-icons opacity-10">palette</i>
               </div>
               <span class="nav-link-text ms-1">Màu sắc</span>
             </a>
@@ -52,7 +52,7 @@
           <li class="nav-item">
             <a class="nav-link text-white {{ $activePage == 'sizes' ? ' active bg-gradient-primary' : '' }} " href="{{route('size.index')}}">
               <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">receipt_long</i>
+                <i class="material-icons opacity-10">aspect_ratio</i>
               </div>
               <span class="nav-link-text ms-1">Kích cỡ</span>
             </a>

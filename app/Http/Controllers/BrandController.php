@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Brand;
 class BrandController extends Controller
 {
     /**
@@ -12,7 +12,8 @@ class BrandController extends Controller
     public function index()
     {
         //
-        return view('layouts.pages.brand.index');
+        $brands = Brand::all();
+        return view('layouts.pages.brand.index',['brands'=>$brands]);
     }
 
     /**
@@ -21,6 +22,7 @@ class BrandController extends Controller
     public function create()
     {
         //
+        return view ('layouts.pages.brand.create');
     }
 
     /**
@@ -29,6 +31,11 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         //
+        $brandRequest = $request->all();
+        $brands = new Brand();
+        $brands->brand_name = $brandRequest['brand_name'];
+        $brands->save();
+        return redirect()->route('brand.index');
     }
 
     /**
@@ -42,24 +49,32 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Brand $id)
     {
         //
+        return view('layouts.pages.brand.create',['brand'=>$id]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Brand $id)
     {
         //
+        $brands = $id ;
+        $brands->brand_name =$request->brand_name;
+        $brands->save();
+        return redirect()->route('brand.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(Brand $id)
     {
         //
+        if($id->delete()){
+            return redirect()->route('brand.index');
+        }
     }
 }
