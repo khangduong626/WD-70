@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colors_tableable', function (Blueprint $table) {
+        Schema::create('colors', function (Blueprint $table) {
             $table->bigIncrements('color_id');
             $table->string('color');
             $table->timestamps();

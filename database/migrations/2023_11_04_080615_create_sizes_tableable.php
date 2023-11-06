@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sizes_tableable', function (Blueprint $table) {
+        Schema::create('sizes', function (Blueprint $table) {
             $table->bigIncrements('size_id');
             $table->string('size');
             $table->timestamps();

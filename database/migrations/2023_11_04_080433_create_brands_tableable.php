@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('brands_tableable', function (Blueprint $table) {
+        Schema::create('brands', function (Blueprint $table) {
             $table->bigIncrements('brand_id');
             $table->string('brand_name');
             $table->timestamps();

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_details_tableable', function (Blueprint $table) {
+        Schema::create('product_details', function (Blueprint $table) {
             $table->bigIncrements('product_detail_id');
             $table->text('description');
             $table->foreignId('user_id')->constrained;
