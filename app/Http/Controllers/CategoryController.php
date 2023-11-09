@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+
+
 
 class CategoryController extends Controller
 {
@@ -11,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('layouts.pages.category.index');
+        $category = Category::all();
+        return view('layouts.pages.category.index',['categories'=>$category]);
     }
 
     /**
@@ -20,6 +24,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view ('layouts.pages.category.create');
     }
 
     /**
@@ -28,6 +33,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $categoryRequest = $request->all();
+        $categories = new Category();
+        $categories->category_name = $categoryRequest['category_name'];
+        $categories->save();
+        return redirect()->route('category.index');
     }
 
     /**
@@ -41,24 +51,34 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $id)
     {
         //
+
+        return view('layouts.pages.category.create',['category'=>$id]);
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $id)
     {
         //
+        $categories = $id ;
+        $categories->category_name =$request->category_name;
+        $categories->save();
+        return redirect()->route('category.index');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(Category $id)
     {
-        //
+        if($id->delete()){
+            return redirect()->route('category.index');
+        }
     }
 }
