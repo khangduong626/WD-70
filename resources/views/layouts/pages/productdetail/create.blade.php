@@ -43,7 +43,7 @@
                         <div class="col-md-6 h   ">
                             <div class="input-group input-group-lg input-group-static input-group-outline my-3 ">
                                 <label for="exampleFormControlSelect1" class="ms-0">Kích thước</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name='size_id'>
+                                <select class="form-control text-uppercase" id="exampleFormControlSelect1" name='size_id'>
                                     
                                     @foreach ($sizes as $size)
                                         

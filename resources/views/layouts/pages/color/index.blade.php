@@ -44,7 +44,8 @@
                               </div>
                             </td>
                             <td class="align-middle text-center text-sm">
-                                <span class=""><input type="color" class="" disabled value="{{$color->color_hex}} " ></span>
+
+                                <span class=""><input type="color" class="" disabled value="{{$color->color_hex}}" ></span>
                               </td>
                             <td class="align-middle text-center text-sm">
                               <span class="badge badge-sm bg-gradient-success">Hiện</span>
