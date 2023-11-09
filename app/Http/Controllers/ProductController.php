@@ -10,7 +10,7 @@ use App\Models\Brand;
 
 
 
-class ProdcutController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -76,17 +76,37 @@ class ProdcutController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $id)
     {
         //
+        $category = Category::all();
+        $brands = Brand::all();
+        return view('layouts.pages.product.create',['products'=>$id,'categories'=>$category,'brands'=>$brands]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $id)
     {
         //
+        $products = $id ;
+        $products->product_name =$request->product_name;
+        $products->category_id = $request->category_id;
+        $products->brand_id = $request->brand_id;
+        if($request->hasFile('img_url')){
+            $file = $request->img_url;
+            $fileHashName = $file->hashName();
+            $fileName = $request->name.'_'.$fileHashName;
+            $path = public_path().'/images/products';
+            $file -> move($path,$fileName);
+            $products->img_url = "/images/products/$fileName";
+        }
+        else {
+            $products->img_url = $products->img_url;
+        }
+        $products->save();
+        return redirect()->route('product.index');
     }
 
     /**

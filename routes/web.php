@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboards;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProdcutController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductDetailController;
+
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\SizeController;
@@ -30,12 +32,21 @@ Route::get('/home',[Dashboards::class,"index"])->name('dashboards');
 
 
 Route::prefix('/product')->name('product.')->group(function(){
-    Route::get('/',[ProdcutController::class,'index'])->name('index');
-    Route::get('/create',[ProdcutController::class,'create'])->name('create');
-    Route::post('/store',[ProdcutController::class,'store'])->name('store');
-    Route::get('/edit/{id}',[ProdcutController::class,'edit'])->name('edit');
-    Route::put('/update/{id}',[ProdcutController::class,'update'])->name('update');
-    Route::delete('/delete/{id}',[ProdcutController::class,'delete'])->name('delete');
+    Route::get('/',[ProductController::class,'index'])->name('index');
+    Route::get('/create',[ProductController::class,'create'])->name('create');
+    Route::post('/store',[ProductController::class,'store'])->name('store');
+    Route::get('/edit/{id}',[ProductController::class,'edit'])->name('edit');
+    Route::put('/update/{id}',[ProductController::class,'update'])->name('update');
+    Route::delete('/delete/{id}',[ProductController::class,'delete'])->name('delete');
+
+});
+Route::prefix('/productdetail')->name('productdetail.')->group(function(){
+    Route::get('/{id}',[ProductDetailController::class,'index'])->name('index');
+    Route::get('/create/{id}',[ProductDetailController::class,'create'])->name('create');
+    Route::post('/store',[ProductDetailController::class,'store'])->name('store');
+    Route::get('/edit/{id}',[ProductDetailController::class,'edit'])->name('edit');
+    Route::put('/update/{id}',[ProductDetailController::class,'update'])->name('update');
+    Route::delete('/delete/{id}',[ProductDetailController::class,'delete'])->name('delete');
 
 });
 Route::prefix('/category')->name('category.')->group(function(){
