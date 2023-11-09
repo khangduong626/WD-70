@@ -57,9 +57,9 @@
                               <span class="text-secondary text-xs font-weight-bold">{{$product->updated_at}}</span>
                             </td>
                             <td class="align-middle text-center">
-                              {{-- <span class="btn btn-outline-secondary">Chi tiet</span> --}}
-                              <a href={{route('productdetail.index',$product->product_id)}} class="btn btn-outline-secondary " data-toggle="tooltip" >
-                                <i class="material-icons opacity-10">add</i>
+                              <a href={{route('productdetail.index',$product->product_id)}}  data-toggle="tooltip" >
+                              <span class="btn btn-outline-secondary">Chi tiet</span>
+
                               </a>
                             </td>
 

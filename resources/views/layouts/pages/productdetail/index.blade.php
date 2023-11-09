@@ -14,7 +14,11 @@
                 
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                  <h6 class="text-white text-capitalize ps-3">Bảng sản phẩm biến thể</h6>
+                  <h6 class="text-white text-capitalize ps-3">
+                    <u>
+                    <a class="text-white" href="{{route('product.index')}}"> {{$products->product_name}}</a>
+                  </u>
+                   </h6>
                 </div>
               </div>
               <div class="card-body px-0 pb-2">
@@ -27,7 +31,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Giá</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Màu</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kích thước</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Số lượng</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
                         <th class="text-secondary opacity-7"></th>
                       </tr>
@@ -57,7 +61,7 @@
                                 <span class="text-secondary text-xs font-weight-bold text-uppercase">{{$pd->sizes->size}}</span>
                             </td>
                             <td class="align-middle text-center text-sm">
-                                <span class="text-secondary text-xs font-weight-bold"></span>
+                                <span class="text-secondary text-xs font-weight-bold">{{$pd->stock_quantity}} </span>
                             </td>
                             <td class="align-middle text-center">
                               <span class="text-secondary text-xs font-weight-bold">{{$pd->updated_at}}</span>
