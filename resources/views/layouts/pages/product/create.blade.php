@@ -11,12 +11,15 @@
                 
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                  <h6 class="text-white text-capitalize ps-3">Thêm sản phẩm</h6>
+                  <h6 class="text-white text-capitalize ps-3">{{isset($products)?'Sửa sản phẩm':'Thêm sản phẩm'}}</h6>
                 </div>
               </div>
               <div class="card-body px-5 pb-4">
-                <form action="{{route('product.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{isset($products) ? route('product.update',$products->product_id): route('product.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @if (isset($products))
+                                @method('PUT')
+                    @endif
                     <div class="row">
                         <div class="col-md-6 h ">
                             {{-- <div class="input-group input-group-lg input-group-static input-group-outline my-3 ">
@@ -28,8 +31,8 @@
                                 <select class="form-control" id="exampleFormControlSelect1" name="category_id">
                                     <option value="0">---NONE--- </option>
                                     @foreach ($categories as $category)
-                                
-                                        <option value="{{$category->category_id}}">{{$category->category_name}}  </option>
+                                        
+                                        <option value="{{$category->category_id}}"  {{ isset($products) &&  $products->category_id == $category->category_id ?" selected ":''}}>{{$category->category_name}}  </option>
                                         
                                     
                                     @endforeach
@@ -43,7 +46,7 @@
                                     <option value="0">---NONE--- </option>
                                     @foreach ($brands as $brand)
                                         
-                                        <option value="{{$brand->brand_id}}">{{$brand->brand_name}}  </option>
+                                        <option value="{{$brand->brand_id}}" {{ isset($products) &&  $products->brand_id == $brand->brand_id ?" selected ":''}}>{{$brand->brand_name}}  </option>
                                     
                                     
                                     @endforeach
@@ -53,21 +56,26 @@
                         <div class="col-md-12 h ">
                             <div class="input-group input-group-lg input-group-static input-group-outline my-3 ">
                                 <label class="">Tên Sản phẩm</label>
-                                <input value="" type="text" name="product_name" class="form-control form-control-lg">
+                    
+                                <input class="form-control form-control-lg" value="{{isset($products)? $products->product_name : ''}}" type="text" name="product_name" class="form-control form-control-lg">
                             </div>
                         </div>
                         <div class="col-md-12 h">
                             <label for="exampleFormControlFile1">Ảnh</label>
-                            <input type="file" name="img_url" class="form-control-file" id="exampleFormControlFile1">
+                            <input type="file" value="{{isset($products) ? $products->img_url:''}}" name="img_url" class="form-control-file" id="exampleFormControlFile1">
+                                <div class="fileinput fileinput-new text-center">
+                                        <img class=" w-50" src=" {{isset($products) ? asset($products->img_url) :"" }} " alt="">
+                                 </div>
+                            </div>
                         </div>
                         <div class="col-md-12 h ">
                             <div class="input-group input-group-lg input-group-static input-group-outline my-3 ">
                                 <label class="">Giá</label>
-                                <input value="" type="text" name="price" class="form-control form-control-lg">
+                                <input value="{{isset($products)? $products->price : ''}}" type="text" name="price" class="form-control form-control-lg">
                             </div>
                         </div>
                     </div>
-                <button type="submit" class="btn btn-primary btn-lg w-100">Thêm</button>
+                <button type="submit" class="btn btn-primary btn-lg w-100">{{isset($products)?'Sửa ':'Thêm '}}</button>
                 </form>
                 
               </div>
