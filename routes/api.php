@@ -28,5 +28,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/home',[HomeController::class,'index'])->name('home');
 Route::get('/category',[CategoryController::class,'index'])->name('category');
+Route::get('/category/{id}',[HomeController::class,'fillterWithCategory'])->name('fillterWithCategory');
+
+
 Route::get('/product',[ProductController::class,'index'])->name('product');
 Route::get('/productdetail/{id}',[ProductDetail::class,'index'])->name('productsdetail');

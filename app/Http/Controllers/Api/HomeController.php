@@ -34,9 +34,16 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function fillterWithCategory(Category $id)
     {
         //
+        $products= Product::select('product_id','product_name','price','img_url','category_id','brand_id',"updated_at")
+        ->with('categories:category_id,category_name','brands:brand_id,brand_name')
+        ->where('category_id',$id->category_id)
+        ->get();
+
+
+        return response()->json(['products'=>$products], Response::HTTP_OK);
     }
 
     /**
